@@ -40,6 +40,12 @@ public class SlingHttpResponse implements CloseableHttpResponse {
 
     public SlingHttpResponse(CloseableHttpResponse response) {
         this.httpResponse = response;
+        if (this.httpResponse.containerHeader("Set-Cookie")) {
+            Header[] headers =  this.httpResponse.getHeaders("Set-Cookie");
+            for (Header h :headers) {
+                System.err.println(h);
+            }
+        }
     }
 
     /**
